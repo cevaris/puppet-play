@@ -1,0 +1,18 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/firewall (1.1.1)
+    puppetlabs/stdlib (4.2.1)
+
+GIT
+  remote: git@github.com:cevaris/puppet-memcached.git
+  ref: master
+  sha: 2f5cf83d4b0967693814a1d636d3d64d41a3e808
+  specs:
+    cevaris/memcached (2.4.0)
+      puppetlabs/firewall (>= 0.1.0)
+      puppetlabs/stdlib (>= 3.2.0)
+
+DEPENDENCIES
+  cevaris/memcached (>= 0)
+

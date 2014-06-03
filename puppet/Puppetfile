@@ -1,0 +1,8 @@
+forge "https://forge.puppetlabs.com"
+
+
+mod "cevaris/memcached",
+  :git => 'git@github.com:cevaris/puppet-memcached.git'
+
+
+ 

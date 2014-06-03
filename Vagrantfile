@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.hostname = "dev.ved.com"
+  config.vm.hostname = "memcached"
   config.vm.box = "trusty"
   config.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
 
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "10.0.2.15"
+  # config.vm.network "private_network", ip: "10.0.2.15"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -74,14 +74,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   cf.policy_server_address = "10.0.2.15"
   # end
 
+  # config.librarian_puppet.puppetfile_dir = "puppet"
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
   # the file default.pp in the manifests_path directory.
   #
   config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "puppet/manifests/dev"
-    puppet.manifest_file = "redis00.test.pp"
+    puppet.manifests_path = "puppet/manifests/"
+    puppet.manifest_file = "memcached.pp"
+    puppet.module_path = "puppet/modules/"
+    puppet.options = "--verbose --debug"
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
