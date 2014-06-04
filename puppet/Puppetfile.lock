@@ -7,7 +7,7 @@ FORGE
 GIT
   remote: git@github.com:cevaris/puppet-memcached.git
   ref: master
-  sha: 2f5cf83d4b0967693814a1d636d3d64d41a3e808
+  sha: 4d2086371849b04bfd29abd11c7cb66b326295b3
   specs:
     cevaris/memcached (2.4.0)
       puppetlabs/firewall (>= 0.1.0)

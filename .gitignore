@@ -2,4 +2,3 @@
 ./puppet/modules
 puppet/.librarian/
 puppet/.tmp/
-puppet/modules/
