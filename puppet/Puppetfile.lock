@@ -1,6 +1,9 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
+    nanliu/staging (0.4.0)
+    puppetlabs/apt (1.4.2)
+      puppetlabs/stdlib (>= 2.2.1)
     puppetlabs/firewall (1.1.1)
     puppetlabs/stdlib (4.2.1)
 
@@ -21,6 +24,16 @@ GIT
       puppetlabs/stdlib (>= 3.2.0)
 
 GIT
+  remote: git@github.com:cevaris/puppetlabs-rabbitmq.git
+  ref: master
+  sha: ae31e9037f73efe6832eed7dbdbea52acb64f27e
+  specs:
+    cevaris/rabbitmq (4.0.0)
+      nanliu/staging (>= 0.3.1)
+      puppetlabs/apt (>= 1.0.0)
+      puppetlabs/stdlib (>= 2.0.0)
+
+GIT
   remote: git@github.com:maestrodev/puppet-wget.git
   ref: master
   sha: e165bf529bc0d4c3dd075536e3fb452edee9c13b
@@ -30,5 +43,6 @@ GIT
 DEPENDENCIES
   camptocamp/archive (>= 0)
   cevaris/memcached (>= 0)
+  cevaris/rabbitmq (>= 0)
   maestrodev/wget (>= 0)
 

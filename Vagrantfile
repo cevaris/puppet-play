@@ -82,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "puppet/manifests/"
-    puppet.manifest_file = "memcached.pp"
+    puppet.manifest_file = "rabbitmq.pp"
     puppet.module_path = "puppet/modules/"
     puppet.options = "--verbose --debug"
   end
