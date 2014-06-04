@@ -4,3 +4,5 @@ class { 'rabbitmq':
   cluster_node_type => 'ram',
   wipe_db_on_cookie_change => true
 }
+
+sudo ufw allow 5672
