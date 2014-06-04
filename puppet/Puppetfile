@@ -2,7 +2,13 @@ forge "https://forge.puppetlabs.com"
 
 
 mod "cevaris/memcached",
-  :git => 'git@github.com:cevaris/puppet-memcached.git'
+  	:git => 'git@github.com:cevaris/puppet-memcached.git'
+mod 'cevaris/rabbitmq',
+	:git => 'git@github.com:cevaris/puppetlabs-rabbitmq.git'
 
 
+mod 'maestrodev/wget',
+  	:git => 'git@github.com:maestrodev/puppet-wget.git'
+mod 'camptocamp/archive',
+  	:git => 'git@github.com:camptocamp/puppet-archive.git'
  

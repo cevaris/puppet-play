@@ -5,14 +5,30 @@ FORGE
     puppetlabs/stdlib (4.2.1)
 
 GIT
+  remote: git@github.com:camptocamp/puppet-archive.git
+  ref: master
+  sha: 417a071deb0e27f631abc6b7c11f80b2c0930541
+  specs:
+    camptocamp/archive (0.0.1)
+
+GIT
   remote: git@github.com:cevaris/puppet-memcached.git
   ref: master
-  sha: 4d2086371849b04bfd29abd11c7cb66b326295b3
+  sha: 1f998418e238f3ca1544b34e131cd223c49dc6d8
   specs:
     cevaris/memcached (2.4.0)
       puppetlabs/firewall (>= 0.1.0)
       puppetlabs/stdlib (>= 3.2.0)
 
+GIT
+  remote: git@github.com:maestrodev/puppet-wget.git
+  ref: master
+  sha: e165bf529bc0d4c3dd075536e3fb452edee9c13b
+  specs:
+    maestrodev/wget (1.4.2)
+
 DEPENDENCIES
+  camptocamp/archive (>= 0)
   cevaris/memcached (>= 0)
+  maestrodev/wget (>= 0)
 
