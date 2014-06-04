@@ -2,7 +2,8 @@ require "bunny"
 
 # Start a communication session with RabbitMQ
 # conn = Bunny.new
-conn = Bunny.new(:host => "10.0.2.15", :port => 5672 )
+conn = Bunny.new(:user => 'guest', :password => 'guest', port: 5672, host: '10.0.2.15')
+# conn = Bunny.new('amqp://adamc:guest@10.0.2.15:15672')
 conn.start
 
 # open a channel

@@ -7,6 +7,12 @@ FORGE
     puppetlabs/firewall (1.1.1)
     puppetlabs/stdlib (4.2.1)
 
+FORGE
+  remote: https://forge.puppetlabs.com
+  specs:
+    attachmentgenie/ufw (1.4.8)
+      puppetlabs/stdlib (>= 2.2.1)
+
 GIT
   remote: git@github.com:camptocamp/puppet-archive.git
   ref: master
@@ -41,6 +47,7 @@ GIT
     maestrodev/wget (1.4.2)
 
 DEPENDENCIES
+  attachmentgenie/ufw (>= 0)
   camptocamp/archive (>= 0)
   cevaris/memcached (>= 0)
   cevaris/rabbitmq (>= 0)
