@@ -26,12 +26,27 @@ rabbitmq_user { 'adamc':
   require =>  Package [ 'rabbitmq-server' ],
 }
 
-exec { "setup_vhost_$rmq_admin":
-	command => "/usr/sbin/rabbitmqctl set_permissions -p / $rmq_admin \".*\" \".*\" \".*\"",
-	unless  => "/usr/sbin/rabbitmqctl list_permissions | grep -c '$rmq_admin.*.*.*'",
-	require => Rabbitmq_User[ $rmq_admin ],
-	user    => root,
+
+
+$default_vhost = '/'
+rabbitmq_vhost { "$default_vhost":
+  	ensure => present,
 }
+
+rabbitmq_user_permissions { "$rmq_admin@$default_vhost":
+	configure_permission => '.*',
+	read_permission      => '.*',
+	write_permission     => '.*',
+	require 			 => [Rabbitmq_Vhost[ $default_vhost ], Rabbitmq_User[ $rmq_admin ]]
+	unless  			 => "/usr/sbin/rabbitmqctl list_permissions | grep -c '$rmq_admin.*.*.*'",
+}
+
+# exec { "setup_vhost_$rmq_admin":
+# 	command => "/usr/sbin/rabbitmqctl set_permissions -p / $rmq_admin \".*\" \".*\" \".*\"",
+# 	unless  => "/usr/sbin/rabbitmqctl list_permissions | grep -c '$rmq_admin.*.*.*'",
+# 	require => Rabbitmq_User[ $rmq_admin ],
+# 	user    => root,
+# }
 
 
 # rabbitmq_user { 'billy':

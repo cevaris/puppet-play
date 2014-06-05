@@ -36,11 +36,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.hostmanager.ignore_private_ip = false
   # config.hostmanager.include_offline = true
 
+  # config.vm.provision :hosts
   
+  config.vm.provision :hosts do |provisioner|
+    provisioner.add_host '192.168.50.11', ['rabbit1.local', 'rabbit1']
+    provisioner.add_host '192.168.50.12', ['rabbit2.local', 'rabbit2']
+  end
+
+
   config.vm.define "rabbit1" do |node|
     node.vm.hostname = "rabbit1"
     node.vm.network "private_network", ip: "192.168.50.11"
-    node.hostmanager.aliases = %w(rabbit1.local rabbit1)
+    # node.vm.provision :hosts
+    # node.hostmanager.aliases = %w(rabbit1.local rabbit1)
 
     # node.hostmanager.enabled = true
     # node.hostmanager.manage_host = true
@@ -59,7 +67,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "rabbit2" do |node|
     node.vm.hostname = "rabbit2"
     node.vm.network "private_network", ip: "192.168.50.12"
-    node.hostmanager.aliases = %w(rabbit2.local rabbit2)
+    # node.vm.provision :hosts
+    # node.hostmanager.aliases = %w(rabbit2.local rabbit2)
 
     # node.hostmanager.enabled = true
     # node.hostmanager.manage_host = true
