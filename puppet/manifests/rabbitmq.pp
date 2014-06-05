@@ -14,16 +14,33 @@ class { '::rabbitmq':
     wipe_db_on_cookie_change => true,
     config_cluster => true,
     ## Hiera lookup for the nodes in this cluster
-    cluster_nodes => ['192.168.50.11', '192.168.50.12'],
+    cluster_nodes => ['rabbit1', 'rabbit2'],
     cluster_node_type => 'disc',
-}->
+}
+
+$rmq_admin = 'adamc'
+
 rabbitmq_user { 'adamc':
   admin    => true,
   password => 'guest',
+  require =>  Package [ 'rabbitmq-server' ],
 }
 
-exec { 'setup_ha_queue':
-    command => "/usr/sbin/rabbitmqctl set_policy ha-all \"^ha\\.\" \'{\"ha-mode\":\"all\"}\'",
-    unless  => "/usr/sbin/rabbitmqctl list_policies | grep ha-all",
-    require => Class['rabbitmq']
+exec { "setup_vhost_$rmq_admin":
+	command => "/usr/sbin/rabbitmqctl set_permissions -p / $rmq_admin \".*\" \".*\" \".*\"",
+	unless  => "/usr/sbin/rabbitmqctl list_permissions | grep -c '$rmq_admin.*.*.*'",
+	require => Rabbitmq_User[ $rmq_admin ],
+	user    => root,
 }
+
+
+# rabbitmq_user { 'billy':
+#   password => 'guest',
+#   require =>  Package [ 'rabbitmq-server' ],
+# }
+# $uzer = 'billy'
+# exec { "setup_vhost_$uzer":
+#     command => "/usr/sbin/rabbitmqctl set_permissions -p / $uzer \".*\" \".*\" \".*\"",
+#     require =>  Rabbitmq_user [ $uzer ],
+#     user => root,
+# }

@@ -22,33 +22,58 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   puppet.options = "--verbose --debug"
   # end
 
+  # config.hostmanager.enabled = true
+  # config.hostmanager.manage_host = true
+  # config.hostmanager.ignore_private_ip = false
+  # config.hostmanager.include_offline = true
+
+
   config.vm.box = "trusty"
   config.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
 
-  config.vm.define "rabbit1" do |rabbit1|
-    # rabbit1.vm.hostname = "rabbit1"
-    rabbit1.vm.network "private_network", ip: "192.168.50.11"
+  # config.hostmanager.enabled = true
+  # config.hostmanager.manage_host = true
+  # config.hostmanager.ignore_private_ip = false
+  # config.hostmanager.include_offline = true
 
-    config.vm.provision "puppet" do |puppet|
+  
+  config.vm.define "rabbit1" do |node|
+    node.vm.hostname = "rabbit1"
+    node.vm.network "private_network", ip: "192.168.50.11"
+    node.hostmanager.aliases = %w(rabbit1.local rabbit1)
+
+    # node.hostmanager.enabled = true
+    # node.hostmanager.manage_host = true
+    # node.hostmanager.ignore_private_ip = false
+    # node.hostmanager.include_offline = true
+
+
+    node.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests/"
       puppet.manifest_file = "rabbitmq.pp"
       puppet.module_path = "puppet/modules/"
       puppet.options = "--verbose --debug"
     end
-    
-
   end
 
-  config.vm.define "rabbit2" do |rabbit2|
-    # rabbit2.vm.hostname = "rabbit2"
-    rabbit2.vm.network "private_network", ip: "192.168.50.12"
+  config.vm.define "rabbit2" do |node|
+    node.vm.hostname = "rabbit2"
+    node.vm.network "private_network", ip: "192.168.50.12"
+    node.hostmanager.aliases = %w(rabbit2.local rabbit2)
 
-    config.vm.provision "puppet" do |puppet|
+    # node.hostmanager.enabled = true
+    # node.hostmanager.manage_host = true
+    # node.hostmanager.ignore_private_ip = false
+    # node.hostmanager.include_offline = true
+
+    node.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests/"
       puppet.manifest_file = "rabbitmq.pp"
       puppet.module_path = "puppet/modules/"
       puppet.options = "--verbose --debug"
     end
   end 
+
+  
 
 end
